@@ -1,20 +1,52 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-	arr := [4]int{1, 2, 3, 4}
-	foo(&arr)
-	fmt.Println(arr)
-}
+	f := math.NaN()
+	f2 := math.NaN()
 
-func foo(slice *[4]int) {
-	slice[0] = 123
+	m := map[float64]string{
+		f:  "Pedro",
+		f2: "Pessoa",
+	}
 
-	// _ = slice[3]
-	// fmt.Println(slice[0])
-	// fmt.Println(slice[1])
-	// fmt.Println(slice[2])
-	// fmt.Println(slice[3])
+	fmt.Println(m)
+	valor, ok := m[f]
+	fmt.Println(valor, ok)
+	delete(m, f)
 
+	clear(m)
+	fmt.Println(m)
+
+	// m := map[string]string{
+	// 	"Pedro":   "Pessoa",
+	// 	"Joaquim": "Pedro",
+	// }
+
+	// clear(m)
+	// fmt.Println(m)
+
+	// m := make(map[string]string)
+	// m["Pedro"] = "Pessoa"
+	// valor, ok := m["Pedro"]
+	// fmt.Println(valor, ok)
+
+	// delete(m, "Pedro")
+	// valor, ok = m["Pedro"]
+	// fmt.Println(valor, ok)
+
+	// m := map[string][]int{
+	// 	"Pedro": {1, 2, 3},
+	// }
+
+	// m := map[string]string{
+	// 	"Pedro":   "Pessoa",
+	// 	"Joaquim": "Pedro",
+	// }
+	// m := make(map[string]string, 100)
+	// fmt.Println(m)
 }
