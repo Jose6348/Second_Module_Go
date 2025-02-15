@@ -3,32 +3,16 @@ package main
 import "fmt"
 
 func main() {
+	var slice []int
+	fmt.Println(slice == nil)
 
-	var x *int
-	x = nil
-	take(x)
-	fmt.Println(x)
+	// slice := []int{1, 2, 3, 4, 5}
+	// slice2 := slice[:0]
+	// fmt.Println(slice2, len(slice2), cap(slice2))
 
-	// x := create()
-	// fmt.Println(*x)
+	// arr := [5]int{1, 2, 3, 4, 5}
+	// slice := arr[1:4]
+	// arr[2] = 15
+	// slice[0] = 123
+	// fmt.Println(arr)
 }
-
-func take(x *int) {
-	*x = 100
-}
-
-// func create() *int {
-// 	x := 10
-// 	return &x
-// }
-
-// func foo(x *int) {
-// 	*x = 100
-// }
-
-// func take(x *int) {
-// 	*x = 100
-// }
-
-// p = 0x123
-// p --> 0x123 = ?
