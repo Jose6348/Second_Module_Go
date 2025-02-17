@@ -26,7 +26,7 @@ var ErrNotFound = errors.New("Not found")
 func main() {
 
 	err := foo()
-	var sqtrError SqrtError
+	var sqtrError *SqrtError
 	if err != nil && errors.As(err, &sqtrError) {
 		fmt.Println(sqtrError.msg)
 		return
@@ -49,4 +49,4 @@ func main() {
 	// fmt.Println(res)
 }
 
-func foo() error { return SqrtError{msg: "teste"} }
+func foo() error { return &SqrtError{msg: "teste"} }
