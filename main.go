@@ -5,45 +5,48 @@ import (
 	"fmt"
 )
 
+type SqrtError struct {
+	msg string
+}
+
+func (s SqrtError) Error() string {
+	return s.msg
+}
+
+var ErrNotFound = errors.New("Not found")
+
+// func RaizQuadrada(x float64) (float64, error) {
+// 	if x < 0 {
+// 		return 0, SqrtError{"Não existe raiz quadrada de número negativo!"}
+// 	}
+// 	resultado := math.Sqrt(x)
+// 	return resultado, nil
+// }
+
 func main() {
 
-	user, err := NewUser(true)
-	if err != nil {
-		fmt.Println("Algum erro na hora de crirar o User")
+	err := foo()
+	var sqtrError SqrtError
+	if err != nil && errors.As(err, &sqtrError) {
+		fmt.Println(sqtrError.msg)
 		return
 	}
-	user.Foo()
+	fmt.Println("caiu fora")
 
-	// a := 10
-	// b := 0
-	// res, err := dividir(a, b)
+	// err := foo()
+	// if err != nil && errors.Is(err, ErrNotFound) {
+	// 	fmt.Println("deu erro not found")
+	// 	return
+	// }
+	// fmt.Println("foi para fora")
+
+	// x := -10
+	// res, err := RaizQuadrada(float64(x))
 	// if err != nil {
 	// 	fmt.Println(err)
 	// 	return
 	// }
-	// fmt.Println(a, "/", b, res)
-
+	// fmt.Println(res)
 }
 
-type User struct {
-	foo string
-}
-
-func (u User) Foo() {
-	fmt.Println(u.foo)
-}
-
-func NewUser(wantErr bool) (*User, error) {
-	if wantErr {
-		return nil, errors.New("Um erro")
-	}
-	return &User{}, nil
-}
-
-// func dividir(a, b int) (int, error) {
-// 	if b == 0 {
-// 		return 0, errors.New("Nao pode dividir por zero")
-// 	}
-// 	return a / b, nil
-
-// }
+func foo() error { return SqrtError{msg: "teste"} }
