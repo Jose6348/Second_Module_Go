@@ -1,24 +1,49 @@
 package main
 
-import "fmt"
-
-type User struct {
-	name string
-	ID   uint64
-}
-
-func (u *User) UpdateName(newName string) {
-	u.name = newName
-}
-
-func UpdateName(u *User, newName string) {
-	u.name = newName
-}
+import (
+	"errors"
+	"fmt"
+)
 
 func main() {
-	f := foo.Foo()
-	user := User{name: "Pedro", ID: 10}
-	user.UpdateName("Joaquim")
-	UpdateName(&user, "Pedro")
-	fmt.Println(user)
+
+	user, err := NewUser(true)
+	if err != nil {
+		fmt.Println("Algum erro na hora de crirar o User")
+		return
+	}
+	user.Foo()
+
+	// a := 10
+	// b := 0
+	// res, err := dividir(a, b)
+	// if err != nil {
+	// 	fmt.Println(err)
+	// 	return
+	// }
+	// fmt.Println(a, "/", b, res)
+
 }
+
+type User struct {
+	foo string
+}
+
+func (u User) Foo() {
+	fmt.Println(u.foo)
+}
+
+func NewUser(wantErr bool) (*User, error) {
+	if wantErr {
+		return nil, errors.New("Um erro")
+	}
+	return &User{}, nil
+}
+
+// func dividir(a, b int) (int, error) {
+// 	if b == 0 {
+// 		return 0, errors.New("Nao pode dividir por zero")
+// 	}
+// 	return a / b, nil
+
+// }
